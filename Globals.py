@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+import math
 TILE_WIDTH = 16
 TILE_HEIGHT = 16
 SCREEN_WIDTH = 640
@@ -20,19 +21,25 @@ class Actor(pygame.sprite.Sprite):
             self.image = pygame.Surface([width, height])
             self.image.fill(color)
             self.imageS = pygame.image.load(filename)
+            #self.image = pygame.transform.rotate(self.image, 20)
             #self.image.fill(color)
             self.rect = self.image.get_rect()
             self.image.blit(self.imageS, (self.rect.x, self.rect.y))
             self.rect.x = x
-            self.rect.y = y   
+            self.rect.y = y
+            self.rotation = 0
     def register_subclass(self, name):
         print("Registered " + name +  " as a subclass of Actor") 
         self.totalActorCount.append(name)
-    def render(self, display):
-        self.image.blit(self.imageS, (self.rect.x, self.rect.y))
-
-
-
+    def actor_update(self):       
+        
+        if self.rotation >= 360:
+            self.rotation = 0
+        else:
+            self.rotation += 1
+        self.image = pygame.transform.rotate(self.imageS, self.rotation)
+   
+        
 
         
     

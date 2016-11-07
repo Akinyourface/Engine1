@@ -1,7 +1,8 @@
 from Globals import *
 from Grass import *
 from Wall import *
-
+from Enemy_follow import *
+from EnemyRotate import *
 class TileMap:
     def __init__(self, filename = "default.txt"):
         self.filename = filename 
@@ -27,4 +28,11 @@ class TileMap:
                     grass = Grass(x * self.blockWidth, y * self.blockWidth)
                     GroupManager.grass_sprite.add(grass)
                     #GroupManager.all_sprite.add(grass)
-                    
+                if self.level[y][x] == "1":
+                    enemy = Enemyfollow(x * self.blockWidth, y * self.blockWidth)
+                    enemy.walls = GroupManager.wall_sprite
+                    enemy.player = GroupManager.player_sprite
+                    GroupManager.enemy_sprite.add(enemy)
+                if self.level[y][x] == "2":
+                    enemy = EnemyRotate(x * self.blockWidth, y * self.blockWidth)
+                    GroupManager.enemy_sprite.add(enemy)

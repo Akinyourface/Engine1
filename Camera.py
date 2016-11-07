@@ -44,7 +44,8 @@ class Camera:
                 ent.rect.y -= 10
             for ent in GroupManager.grass_sprite:
                 ent.rect.y -= 10
-            
+            for ent in GroupManager.enemy_sprite:
+                ent.rect.y -= 10
              
             
         if player.rect.y + 16 <= SCREEN_HEIGHT / 4 * 3 - 250:
@@ -53,6 +54,8 @@ class Camera:
                 
             for ent in GroupManager.grass_sprite:
                 ent.rect.y += 10
+            for ent in GroupManager.enemy_sprite:
+                ent.rect.y += 10
 
         if player.rect.x + 16 >= SCREEN_WIDTH / 4 * 3 + 10:
             for ent in GroupManager.all_sprite:
@@ -60,11 +63,16 @@ class Camera:
                 
             for ent in GroupManager.grass_sprite:
                 ent.rect.x -= 10
+
+            for ent in GroupManager.enemy_sprite:
+                ent.rect.x -= 10
         if player.rect.x + 16 <= SCREEN_WIDTH / 4 * 3 - 350:
             for ent in GroupManager.all_sprite:
                 ent.rect.x += 10
                 
             for ent in GroupManager.grass_sprite:
+                ent.rect.x += 10
+            for ent in GroupManager.enemy_sprite:
                 ent.rect.x += 10
         
     @staticmethod

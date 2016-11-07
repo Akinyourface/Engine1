@@ -24,7 +24,6 @@ class Engine:
     
     GroupManager.all_sprite.add(player)
     
-    tile = Actor(50, 50, 16, 16, (0, 0, 0), "../Images/player.png")
     tm.draw_map(display)
     
     player.walls = GroupManager.wall_sprite
@@ -43,11 +42,15 @@ class Engine:
                 if event.type == pygame.QUIT:
                     Engine.isRunning = False
             Engine.display.fill([255, 255, 255])
+            for ent in GroupManager.enemy_sprite:
+                ent._update(Engine.player)
             Camera.Camera_Transform(Engine.player, Engine.isRunning)
             GroupManager.all_sprite.update()
             Engine.display.blit(Engine.background, (0, 0))
+            
             GroupManager.grass_sprite.draw(Engine.display)
-            GroupManager.all_sprite.draw(Engine.display)           
+            GroupManager.all_sprite.draw(Engine.display)
+            GroupManager.enemy_sprite.draw(Engine.display)
             pygame.display.update()
             Engine.clock.tick(60)
         pygame.quit()

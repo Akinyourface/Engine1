@@ -39,6 +39,7 @@ class Player(Actor):
             self.deltay = 0
 
     def update(self):
+       #super().actor_update()
         #self.image = pygame.transform.scale(self.image, (self.rect.width * Camera.CameraZoom, self.rect.height * Camera.CameraZoom))
         #self.rect = self.image.get_rect()    
         self.rect.x += self.deltax
